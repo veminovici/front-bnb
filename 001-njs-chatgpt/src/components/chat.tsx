@@ -1,7 +1,7 @@
 "use client"
 
 import React from 'react'
-import { useChat } from 'ai/react'
+import { useChat, Message } from 'ai/react'
 
 export default function Chat() {
 
@@ -12,15 +12,31 @@ export default function Chat() {
 
   return (
     <div>
-      {/* Text messages */}
-      <div>
-        <h3 className='text-lg font-semibold mt-2'>GPT-4</h3>
-        <p>I am a robot with GPT-4</p>
-      </div>
-      <div>
-        <h3 className='text-lg font-semibold mt-2'>User</h3>
-        <p>I am an user</p>
-      </div>
+      {messages.map((message: Message) => {
+        return (
+          <div key={message.id}>
+            {/* Name of the person talking */}
+            {
+              message.role === "assistant"
+              ?
+              <h3 className='text-lg font-semibold mt-2'>GPT-4</h3>
+              :
+              <h3 className='text-lg font-semibold mt-2'>User</h3>
+            }
+
+            {/* Content of the message */}
+            {
+              message.content.split("\n").map((currentTextBlock: string, index: number) => {
+                if (currentTextBlock === "") {
+                  return <p key={message.id + index}>{" "}</p>
+                } else {
+                  return <p key={message.id + index}>{currentTextBlock}</p>
+                }
+              })
+            }
+          </div>
+        )
+      })}
 
       <form className='mt-12' onSubmit={handleSubmit}>
         <p>User Message</p>
