@@ -5,8 +5,14 @@ import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import PokemonCard from "./pokemon-card";
 
-export default function PokemonGrid() {
+interface PokemonGridProps {
+  pokemonList: any
+}
+
+export default function PokemonGrid({pokemonList} : PokemonGridProps) {
   const [searchText, setSearchText] = useState("");
+
+  console.log(pokemonList);
 
   return (
     <>
