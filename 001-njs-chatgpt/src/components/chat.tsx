@@ -1,8 +1,15 @@
 "use client"
 
 import React from 'react'
+import { useChat } from 'ai/react'
 
 export default function Chat() {
+
+  const {input, handleInputChange, handleSubmit, isLoading, messages} = useChat();
+
+  console.log(messages);
+  console.log(input);
+
   return (
     <div>
       {/* Text messages */}
@@ -15,9 +22,14 @@ export default function Chat() {
         <p>I am an user</p>
       </div>
 
-      <form className='mt-12'>
+      <form className='mt-12' onSubmit={handleSubmit}>
         <p>User Message</p>
-        <textarea className='mt-2 w-full bg-slate-800 p-2' placeholder={"What are data structures and algorithms?"}></textarea>
+        <textarea
+          className='mt-2 w-full bg-slate-600 p-2'
+          placeholder={"What are data structures and algorithms?"}
+          value={input}
+          onChange={handleInputChange}
+        />
         <button className='rounded-md bg-blue-600 p-2 mt-2'>
           Send Message
         </button>
