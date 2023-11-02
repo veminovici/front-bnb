@@ -23,8 +23,9 @@ export default function PokemonGrid() {
             onChange={(e) => setSearchText(e.target.value)}
           />
         </div>
+        <h3 className="text-3xl pt-12 pb-6 text-center">Pokemon Collection</h3>
       </div>
-      <div className='mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left'>
+      <div className='mb-32 grid text-center lg:mb-0 lg:grid-cols-3 lg:text-left'>
         <PokemonCard name="Pikachu"/>
       </div>
     </>
